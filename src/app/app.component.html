@@ -1,0 +1,15 @@
+<!-- <h1 class="text-center text-primary">
+  {{pageTitle}}
+</h1> -->
+<nav class='navbar navbar-expand navbar-dark bg-primary'>
+  <a class='navbar-brand text-light'>{{pageTitle}}</a>
+  <ul class='nav '>
+    <li><a class='nav-link text-light'
+         [routerLink]="['/welcome']">Home</a></li>
+    <li><a class='nav-link text-light'
+         [routerLink]="['/products']">Product List</a></li>
+  </ul>
+</nav>
+<div class='container'>
+  <router-outlet></router-outlet>
+</div>

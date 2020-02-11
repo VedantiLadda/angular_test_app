@@ -5,9 +5,18 @@
   <a class='navbar-brand text-light'>{{pageTitle}}</a>
   <ul class='nav '>
     <li><a class='nav-link text-light'
-         [routerLink]="['/welcome']">Home</a></li>
+         routerLinkActive='active'
+         [routerLink]="['/welcome']">Home</a>
+    </li>
     <li><a class='nav-link text-light'
-         [routerLink]="['/products']">Product List</a></li>
+         routerLinkActive='active'
+         [routerLink]="['/products']">Product List</a>
+    </li>
+    <li class='nav-item'><a class='nav-link text-light'
+         routerLinkActive='active'
+         [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/products/0/edit']">Add Product</a>
+    </li>
   </ul>
 </nav>
 <div class='container'>

@@ -2,8 +2,10 @@
   {{pageTitle}}
 </h1> -->
 <nav class='navbar navbar-expand navbar-dark bg-primary'>
-  <a class='navbar-brand text-light'>{{pageTitle}}</a>
-  <ul class='nav '>
+  <a class='navbar-brand'
+     routerLinkActive='active'
+     [routerLink]="['/welcome']">{{pageTitle}}</a>
+  <ul class='nav mr-auto'>
     <li><a class='nav-link text-light'
          routerLinkActive='active'
          [routerLink]="['/welcome']">Home</a>
@@ -12,13 +14,28 @@
          routerLinkActive='active'
          [routerLink]="['/products']">Product List</a>
     </li>
-    <li class='nav-item'><a class='nav-link text-light'
+    <li *ngIf='isLoggedin && isAdmin'
+        class='nav-item'><a class='nav-link text-light'
          routerLinkActive='active'
          [routerLinkActiveOptions]="{exact: true}"
          [routerLink]="['/products/0/edit']">Add Product</a>
+    </li>
+
+  </ul>
+  <ul class='nav'>
+    <li *ngIf='!isLoggedin'><a class='nav-link text-light'
+         routerLinkActive='active'
+         [routerLink]="['/login']">Login</a>
+    </li>
+    <li *ngIf='isLoggedin'><a class='nav-link text-light'
+         routerLinkActive='active'
+         [routerLink]="['/welcome']"
+         (click)="logout()">Logout</a>
     </li>
   </ul>
 </nav>
 <div class='container'>
   <router-outlet></router-outlet>
+  <div>{{isLoggedin}}</div>
+  <div>{{isAdmin}}</div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../product';
 import { ProductService } from '../product.service';
+import { LoginService } from 'src/app/users/login/login.service';
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -13,6 +14,7 @@ export class ProductListComponent implements OnInit {
   imageMargin: number = 2;
   showImage: boolean = false;
   errormessage: string;
+  isAdmin: boolean;
 
   _listFilter: string;
   get listFilter(): string {
@@ -29,7 +31,8 @@ export class ProductListComponent implements OnInit {
   // Constructor is called before ngOnInit() method
   // Best place to set default properties
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+    private loginService:LoginService) {
     this.listFilter = '';
   }
 
@@ -48,6 +51,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.loginService.getAdminStatus();   
     this.productService.getProducts().subscribe({
       next: products => {this.products = products;
         this.filteredProducts = this.products;
